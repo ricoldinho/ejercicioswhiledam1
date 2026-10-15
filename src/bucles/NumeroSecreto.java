@@ -13,13 +13,13 @@ public class NumeroSecreto {
 
         int vidas = 3;
         int numeroSecreto = random.nextInt(51);
+        int numeroUsuario = 0;
         while(vidas > 0){
-            System.out.println("Adivina el numero secreto: (0-50)");
-            int numeroUsuario = kb.nextInt();
-            if(numeroUsuario == numeroSecreto){
-                System.out.println("Has adivinado el numero secreto");
-                break;
-            }else{
+            do{
+                System.out.println("Adivina el numero secreto: (0-50)");
+                numeroUsuario = kb.nextInt();
+            }while(numeroUsuario<0 || numeroUsuario>50);
+            if(numeroUsuario != numeroSecreto){
                 System.out.println("Fallaste el número secreto");
                 vidas--;
                 if(vidas == 0){
@@ -28,9 +28,10 @@ public class NumeroSecreto {
                 }else{
                     System.out.println("Te quedan " + vidas + " vidas");
                 }
+            }else{
+                vidas = 0;
+                System.out.println("Has ganado, el numero secreto era: " + numeroSecreto);
             }
         }
-
-
     }
 }
